@@ -1,2 +1,2 @@
-# nodejs-tutorial
-A playground for me to experiment whilst following NodeJS tutorials and courses
+# node-todo
+The backend for a ToDo application written in NodeJS.

@@ -1,0 +1,14 @@
+{
+  "name": "todo-angular-1x",
+  "version": "1.0.0",
+  "description": "A todo app written in Angular 1.X",
+  "main": "angular-todo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matthias Kentzia",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.5"
+  }
+}

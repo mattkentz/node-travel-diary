@@ -1,6 +1,6 @@
-var nodeTodoFe = angular.module('nodeTodoFe', []);
+angular.module('nodeTodoFe', []);
 
-function mainController($scope, $http) {
+angular.module('nodeTodoFe').controller('mainController', function mainController($scope, $http) {
     $scope.formData = {};
 
     // when landing on the page, get all todos and show them
@@ -38,4 +38,4 @@ function mainController($scope, $http) {
             });
     };
 
-}
+});

@@ -9,6 +9,7 @@
   "author": "Matthias Kentzia",
   "license": "ISC",
   "dependencies": {
-    "angular": "^1.5.5"
+    "angular": "^1.5.5",
+    "angular-ui-router": "^0.3.0"
   }
 }

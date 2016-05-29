@@ -1,2 +1,2 @@
 angular.module('travelDiary', [
-  'travelDiary.destinationForm','travelDiary.destinationList']);
+  'travelDiary.travelRoutes', 'travelDiary.destinationForm','travelDiary.destinationList']);

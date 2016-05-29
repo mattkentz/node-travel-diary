@@ -41,16 +41,20 @@ function DestinationFormController (DestinationFormService) {
 
 angular.module('travelDiary.destinationForm').service('DestinationFormService', DestinationFormService);
 
-DestinationFormService.$inject = ['$http'];
+DestinationFormService.$inject = ['$http', '$rootScope'];
 
-function DestinationFormService ($http) {
+function DestinationFormService ($http, $rootScope) {
 
   var DestinationFormService = {
     addDestination : addDestination
   };
 
   function addDestination(destination) {
-    return $http.post('/api/destinations', destination);
+    return $http.post('/api/destinations', destination)
+    .success(function(data) {
+        //TODO refactor using service 
+        $rootScope.$broadcast('destinations-updated', data);
+    });
   }
 
   return DestinationFormService;

@@ -19,8 +19,10 @@
 
     <!-- VENDOR -->
     <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
 
     <!-- APP -->
+    <script src="modules/travel/travel-routes.module.js" type="text/javascript"></script>
     <script src="modules/travel/destination-form.directive.js" type="text/javascript"></script>
     <script src="modules/travel/destination-list.directive.js" type="text/javascript"></script>
     <script src="modules/travel/travel-diary.module.js" type="text/javascript"></script>
@@ -35,8 +37,7 @@
             <h1>Travel Diary</h1>
         </div>
 
-        <destination-list></destination-list>
-        <destination-form></destination-form>
+        <div ui-view></div>
 
     </div>
 

@@ -14,9 +14,9 @@ function DestinationList () {
 
 angular.module('travelDiary.destinationList').controller('DestinationListController', DestinationListController);
 
-DestinationListController.$inject = ['DestinationListService'];
+DestinationListController.$inject = ['$rootScope','DestinationListService'];
 
-function DestinationListController (DestinationListService) {
+function DestinationListController ($rootScope, DestinationListService) {
   var vm = this;
   vm.init = init;
   vm.getDestinations = getDestinations;
@@ -49,6 +49,10 @@ function DestinationListController (DestinationListService) {
           console.log('Error: ' + data);
       });
   };
+
+  var destinationUpdateListener = $rootScope.$on('destinations-updated', function (event, data) {
+    vm.destinations = data;
+  });
 }
 
 angular.module('travelDiary.destinationList').service('DestinationListService', DestinationListService);

@@ -41,6 +41,19 @@ module.exports = function(app) {
 
   });
 
+  // create destination and send back all destinations after creation
+  app.post('/api/destinations/:destination_id', function(req, res) {
+      console.log(req);
+      var updatedDestination = req.body;
+      // create a destination, information comes from AJAX request from Angular
+      Destination.update(
+        { _id : req.params.destination_id }, updatedDestination, function(err, destination) {
+          if (err)
+              res.send(err);
+      });
+
+  });
+
   // delete a destination
   app.delete('/api/destinations/:destination_id', function(req, res) {
       Destination.remove({

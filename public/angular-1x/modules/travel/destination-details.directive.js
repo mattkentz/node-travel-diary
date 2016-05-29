@@ -14,13 +14,15 @@ function DestinationDetails () {
 
 angular.module('travelDiary.destinationDetails').controller('DestinationDetailsController', DestinationDetailsController);
 
-DestinationDetailsController.$inject = ['$stateParams','DestinationDetailsService'];
+DestinationDetailsController.$inject = ['$scope','$stateParams','DestinationDetailsService'];
 
-function DestinationDetailsController ($stateParams, DestinationDetailsService) {
+function DestinationDetailsController ($scope, $stateParams, DestinationDetailsService) {
   var vm = this;
   vm.init = init;
   vm.getDestinationDetails = getDestinationDetails;
+  vm.updateDestinationDetails = updateDestinationDetails;
   vm.deleteDestination = deleteDestination;
+  vm.setDestinationImage = setDestinationImage;
 
   vm.init();
 
@@ -41,6 +43,10 @@ function DestinationDetailsController ($stateParams, DestinationDetailsService) 
     });
   }
 
+  function updateDestinationDetails() {
+    DestinationDetailsService.updateDestinationDetails(vm.destination);
+  }
+
   function deleteDestination() {
     DestinationDetailsService.deleteDestination(vm.destination._id)
       .success(function(data) {
@@ -50,6 +56,20 @@ function DestinationDetailsController ($stateParams, DestinationDetailsService) 
           console.log('Error: ' + data);
       });
   };
+
+  function setDestinationImage() {
+
+    var f = document.getElementById('destinationImageUpload').files[0];
+    var  r = new FileReader();
+
+    r.onloadend = function(e){
+      var data = e.target.result;
+      $scope.$evalAsync(function functionName() {
+        vm.destination.image.data = data;
+      });
+    }
+    r.readAsDataURL(f);
+  }
 }
 
 angular.module('travelDiary.destinationDetails').service('DestinationDetailsService', DestinationDetailsService);
@@ -60,11 +80,16 @@ function DestinationDetailsService ($http) {
 
   var DestinationDetailsService = {
     getDestinationDetails : getDestinationDetails,
+    updateDestinationDetails : updateDestinationDetails,
     deleteDestination : deleteDestination
   };
 
   function getDestinationDetails(id) {
     return $http.get(`/api/destinations/${id}`);
+  }
+
+  function updateDestinationDetails(destination) {
+    return $http.post(`/api/destinations/${destination._id}`, destination);
   }
 
   function deleteDestination(id) {

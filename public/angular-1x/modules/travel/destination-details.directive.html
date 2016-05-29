@@ -3,6 +3,10 @@
 
         <!-- LOOP OVER THE TODOS IN $scope.destinations -->
         <div>
+            <img ng-src="{{destDetCtrl.destination.image.data}}">
+            <input type="file" id="destinationImageUpload" />
+            <button ng-click="destDetCtrl.setDestinationImage()">Set as destination image</button>
+            <button ng-click="destDetCtrl.updateDestinationDetails()">Save Destination Details</button>
             <label>
                 {{ destDetCtrl.destination.name }}
             </label>

@@ -3,11 +3,15 @@ angular.module('travelDiary.travelRoutes', ['ui.router']).config(routeConfigurat
 routeConfiguration.$inject = ['$stateProvider', '$urlRouterProvider'];
 
 function routeConfiguration ($stateProvider, $urlRouterProvider) {
-  //$urlRouterProvider.otherwise("/");
+  $urlRouterProvider.otherwise("/destinations");
 
   $stateProvider
     .state('destinations', {
-      url: "/",
+      url: "/destinations",
       templateUrl: "modules/travel/destinations.html"
+    })
+    .state('destination-details', {
+      url: "/destination-details/:id",
+      template: `<destination-details></destination-details>`
     });
 }

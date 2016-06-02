@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('travelDiary.destinationDetails', []);
+angular.module('travelDiary.destinationDetails', ['ngFileUpload']);
 angular.module('travelDiary.destinationDetails').directive('destinationDetails', DestinationDetails);
 
 function DestinationDetails () {
@@ -57,31 +57,22 @@ function DestinationDetailsController ($scope, $stateParams, DestinationDetailsS
       });
   };
 
-  function setDestinationImage() {
-
-    var f = document.getElementById('destinationImageUpload').files[0];
-    var  r = new FileReader();
-
-    r.onloadend = function(e){
-      var data = e.target.result;
-      $scope.$evalAsync(function functionName() {
-        vm.destination.image.data = data;
-      });
-    }
-    r.readAsDataURL(f);
+  function setDestinationImage(file) {
+    DestinationDetailsService.setDestinationImage(vm.destination._id, vm.destination.name, vm.destination.description, file);
   }
 }
 
 angular.module('travelDiary.destinationDetails').service('DestinationDetailsService', DestinationDetailsService);
 
-DestinationDetailsService.$inject = ['$http'];
+DestinationDetailsService.$inject = ['$http', 'Upload'];
 
-function DestinationDetailsService ($http) {
+function DestinationDetailsService ($http, Upload) {
 
   var DestinationDetailsService = {
     getDestinationDetails : getDestinationDetails,
     updateDestinationDetails : updateDestinationDetails,
-    deleteDestination : deleteDestination
+    deleteDestination : deleteDestination,
+    setDestinationImage : setDestinationImage
   };
 
   function getDestinationDetails(id) {
@@ -95,6 +86,25 @@ function DestinationDetailsService ($http) {
   function deleteDestination(id) {
     return $http.delete(`/api/destinations/${id}`);
   };
+
+  function setDestinationImage(id, name, description, file) {
+    Upload.upload({
+            method: 'POST',
+            url: `/api/destinations/${id}`,
+            data: {
+              name: name,
+              description: description,
+              file: file
+            }
+        }).then(function (resp) {
+            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+        }, function (resp) {
+            console.log('Error status: ' + resp.status);
+        }, function (evt) {
+            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+        });
+  }
 
   return DestinationDetailsService;
 }

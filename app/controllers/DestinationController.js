@@ -1,19 +1,19 @@
-'use strict';
+'use strict'
 // Load the destination model
-var Destination = require('../models/destination');
-var multiparty = require('multiparty');
+const Destination = require('../models/destination');
+const multiparty = require('multiparty');
 
 // expose the routes to our app with module.exports
 module.exports = function(app) {
 
   /* ------ API ------ */
 
-  // Get all destinations
+  // GET - Get all destinations
   app.get('/api/destinations', function(req, res) {
       getDestinations(res);
   });
 
-  // Get a specific destination
+  // GET - Get a specific destination by id
   app.get('/api/destinations/:destination_id', function(req, res) {
     // lean() used to return Javascript object in callback rather than model object
     Destination.findById(req.params.destination_id).lean().exec(function(err, destination) {
@@ -25,7 +25,7 @@ module.exports = function(app) {
 
   });
 
-  // Create destination and send back all destinations after creation
+  // POST - Create destination and send back all destinations after creation
   app.post('/api/destinations', function(req, res) {
       console.log(req);
       // create a destination, information comes from AJAX request from Angular
@@ -45,7 +45,7 @@ module.exports = function(app) {
 
   });
 
-  // Update destination details
+  // POST - Update destination details
   app.post('/api/destinations/:destination_id', function(req, res) {
       var destination = {
         _id: req.params.destination_id
@@ -122,7 +122,7 @@ module.exports = function(app) {
       form.parse(req);
   });
 
-  // Delete a destination
+  // DELETE - Delete a destination by id
   app.delete('/api/destinations/:destination_id', function(req, res) {
       Destination.remove({
           _id : req.params.destination_id

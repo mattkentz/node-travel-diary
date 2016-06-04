@@ -2,8 +2,8 @@
 
 // expose the routes to our app with module.exports
 module.exports = function(app) {
-require('./controllers/TodoController')(app);
 require('./controllers/DestinationController')(app);
+require('./controllers/UserController')(app);
 
   // application -------------------------------------------------------------
   app.get('/', function(req, res) {

@@ -2,19 +2,18 @@
 // Load the destination model
 const Destination = require('../models/destination');
 const multiparty = require('multiparty');
-
 // expose the routes to our app with module.exports
-module.exports = function(app) {
+const DestinationController = {
 
   /* ------ API ------ */
 
   // GET - Get all destinations
-  app.get('/api/destinations', function(req, res) {
+  getAllDestinations: function(req, res) {
       getDestinations(res);
-  });
+  },
 
   // GET - Get a specific destination by id
-  app.get('/api/destinations/:destination_id', function(req, res) {
+  getDestinationById: function(req, res) {
     // lean() used to return Javascript object in callback rather than model object
     Destination.findById(req.params.destination_id).lean().exec(function(err, destination) {
         if (err)
@@ -24,11 +23,10 @@ module.exports = function(app) {
         }
         res.json(destination);
     });
-
-  });
+  },
 
   // POST - Create destination and send back all destinations after creation
-  app.post('/api/destinations', function(req, res) {
+  createDestination: function(req, res) {
       console.log(req);
       // create a destination, information comes from AJAX request from Angular
       Destination.create({
@@ -45,10 +43,10 @@ module.exports = function(app) {
           getDestinations(res);
       });
 
-  });
+  },
 
   // POST - Update destination details
-  app.post('/api/destinations/:destination_id', function(req, res) {
+  updateDestination: function(req, res) {
       var destination = {
         _id: req.params.destination_id
       }
@@ -122,10 +120,10 @@ module.exports = function(app) {
 
       // Parse req
       form.parse(req);
-  });
+  },
 
   // DELETE - Delete a destination by id
-  app.delete('/api/destinations/:destination_id', function(req, res) {
+  deleteDestination: function(req, res) {
       Destination.remove({
           _id : req.params.destination_id
       }, function(err, destination) {
@@ -134,15 +132,16 @@ module.exports = function(app) {
 
           getDestinations(res);
       });
-  });
-
-  // Return destinations to a response object
-  function getDestinations (res) {
-    Destination.find().select('name').exec(function(err, destinations) {
-        if (err)
-            res.send(err)
-        res.json(destinations);
-    });
-  };
-
+  }
 };
+
+// Return destinations to a response object
+function getDestinations (res) {
+  Destination.find().select('name').exec(function(err, destinations) {
+      if (err)
+          res.send(err)
+      res.json(destinations);
+  });
+};
+
+module.exports = DestinationController;

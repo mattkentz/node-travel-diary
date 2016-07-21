@@ -10,7 +10,7 @@ require('./controllers/UserController')(app);
    */
 
    // GET - Get all destinations
-   app.get('/api/destinations', DestinationController.getAllDestinations);
+   app.get('/api/destinations', DestinationController.getDestinations);
 
    // GET - Get a specific destination by id
    app.get('/api/destinations/:destination_id', DestinationController.getDestinationById);

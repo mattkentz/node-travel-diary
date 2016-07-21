@@ -19,7 +19,9 @@ module.exports = function(app) {
     Destination.findById(req.params.destination_id).lean().exec(function(err, destination) {
         if (err)
             res.send(err)
-        destination.image.data = destination.image.data.toString('base64');
+        if(destination.image && destination.image.data) {
+            destination.image.data = destination.image.data.toString('base64');
+        }
         res.json(destination);
     });
 

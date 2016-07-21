@@ -3,7 +3,7 @@
 // expose the routes to our app with module.exports
 module.exports = function(app) {
 const DestinationController = require('./controllers/DestinationController');
-require('./controllers/UserController')(app);
+const UserController = require('./controllers/UserController');
 
   /*
    * Destination Routes
@@ -23,6 +23,16 @@ require('./controllers/UserController')(app);
 
    // DELETE - Delete a destination by id
    app.delete('/api/destinations/:destination_id', DestinationController.deleteDestination);
+
+   /*
+    * User Routes
+    */
+
+    // POST - Create user
+    app.post('/api/users', UserController.createUser);
+
+    // POST - Update destination details
+    app.post('/api/users/login', UserController.loginUser);
 
    /*
     * Application Routes

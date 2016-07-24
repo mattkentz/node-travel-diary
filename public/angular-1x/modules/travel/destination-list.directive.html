@@ -1,12 +1,14 @@
-<div id="destination-list" class="row">
-    <div class="col-sm-4 col-sm-offset-4">
-
-        <!-- LOOP OVER THE TODOS IN $scope.destinations -->
-        <div class="checkbox" ng-repeat="destination in destListCtrl.destinations">
-            <label> {{ destination.name }} </label>
-            <a ui-sref="destination-details({id: destination._id})">Details</a>
-            <a ng-click="destListCtrl.deleteDestination(destination._id)"> Delete</a>
-        </div>
-
+<div id="destination-list" class="row text-center">
+    <h3>Destinations</h3>
+    <div class="col-sm-6 col-sm-offset-3 text-left">
+        <ul class="list-group">
+            <li ng-repeat="destination in destListCtrl.destinations" class="list-group-item row">
+                <span class="lead col-sm-8">{{ destination.name }}</span>
+                <span class="col-sm-4">
+                    <a ui-sref="destination-details({id: destination._id})" class="btn btn-primary">Details</a>
+                    <a ng-click="destListCtrl.deleteDestination(destination._id)" class="btn btn-danger"> Delete</a>
+                </span>
+            </li>
+        </ul>
     </div>
 </div>

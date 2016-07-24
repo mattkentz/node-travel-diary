@@ -18,6 +18,7 @@ DestinationDetailsController.$inject = ['$scope','$stateParams','DestinationDeta
 
 function DestinationDetailsController ($scope, $stateParams, DestinationDetailsService) {
   var vm = this;
+    vm.destinationImage = null;
   vm.init = init;
   vm.getDestinationDetails = getDestinationDetails;
   vm.updateDestinationDetails = updateDestinationDetails;
@@ -36,6 +37,7 @@ function DestinationDetailsController ($scope, $stateParams, DestinationDetailsS
     DestinationDetailsService.getDestinationDetails(id)
     .success(function getDestinationDetailsSuccess(data) {
         vm.destination = data;
+        vm.destinationImage = 'data:' + vm.destination.image.contentType + ';base64,' + vm.destination.image.data;
     })
     .error(function getDestinationDetailsError(data) {
         console.log('Error: ' + data);
@@ -58,6 +60,13 @@ function DestinationDetailsController ($scope, $stateParams, DestinationDetailsS
   };
 
   function setDestinationImage(file) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+          vm.destinationImage = e.target.result;
+      }
+
+      reader.readAsDataURL(file);
     DestinationDetailsService.setDestinationImage(vm.destination._id, vm.destination.name, vm.destination.description, file);
   }
 }

@@ -48,7 +48,7 @@ function createDestination(req, res) {
         if (err)
             res.send(err);
 
-        getDestinations(res);
+        getDestinations(req, res);
     });
 
 };
@@ -123,7 +123,7 @@ function updateDestination(req, res) {
           if (err)
               res.send(err);
       });
-      res.end('File uploaded');
+      getDestinationById(req,res);
     });
 
     // Parse req
@@ -138,7 +138,7 @@ function deleteDestination(req, res) {
         if (err)
             res.send(err);
 
-        getDestinations(res);
+        getDestinations(req, res);
     });
 }
 

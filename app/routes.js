@@ -2,8 +2,9 @@
 
 // expose the routes to our app with module.exports
 module.exports = function(app) {
-const DestinationController = require('./controllers/DestinationController');
-const UserController = require('./controllers/UserController');
+    const path = require('path');
+    const DestinationController = require('./controllers/DestinationController');
+    const UserController = require('./controllers/UserController');
 
   /*
    * Destination Routes
@@ -38,7 +39,7 @@ const UserController = require('./controllers/UserController');
     * Application Routes
     */
   app.get('/', function(req, res) {
-      res.sendFile('./public/app/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+      res.sendFile('/app/index.html', { root: path.join(__dirname, '../public') });
   });
 
 };

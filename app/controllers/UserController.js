@@ -17,7 +17,7 @@ function createUser(req, res, next, passport) {
     if (!user) {
       return res.status(401).json({error: 'Auth Error!'});
     }
-    res.json({
+    res.status(200).json({
       id: user._id,
       email: user.local.email
     });
@@ -34,7 +34,7 @@ function loginUser(req, res, next, passport) {
     if (!user) {
       return res.status(401).json({error: 'Auth Error!'});
     }
-    res.json({
+    res.status(200).json({
       id: user._id,
       email: user.local.email
     });

@@ -1,10 +1,10 @@
 <div id="destination-list" class="row text-center">
     <h3>Destinations</h3>
-    <div class="col-sm-6 col-sm-offset-3 text-left">
+    <div class="col-xs-12 col-md-6 col-md-offset-3 text-left">
         <ul class="list-group">
             <li ng-repeat="destination in destListCtrl.destinations" class="list-group-item row">
-                <span class="lead col-sm-8">{{ destination.name }}</span>
-                <span class="col-sm-4">
+                <span class="lead col-xs-7">{{ destination.name }}</span>
+                <span class="col-xs-5">
                     <a ui-sref="destination-details({id: destination._id})" class="btn btn-primary">Details</a>
                     <a ng-click="destListCtrl.deleteDestination(destination._id)" class="btn btn-danger"> Delete</a>
                 </span>

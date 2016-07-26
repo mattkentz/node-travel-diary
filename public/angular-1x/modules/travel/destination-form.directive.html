@@ -1,17 +1,19 @@
-<div id="destination-form" class="row text-center col-sm-6 col-sm-offset-3">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3>Add Destination</h3>
-        </div>
-        <form class="text-center panel-body">
-            <div class="form-group">
-                <input type="text" class="form-control input-lg text-center" placeholder="Name" ng-model="destFormCtrl.formData.name">
+<div id="destination-form" class="row text-center">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Add Destination</h3>
             </div>
-            <div class="form-group">
-                <input type="text" class="form-control input-lg text-center" placeholder="Description" ng-model="destFormCtrl.formData.description">
-            </div>
+            <form class="text-center panel-body">
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg text-center" placeholder="Name" ng-model="destFormCtrl.formData.name">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control input-lg text-center" placeholder="Description" ng-model="destFormCtrl.formData.description" ></textarea>
+                </div>
 
-            <button type="submit" class="btn btn-primary btn-lg" ng-click="destFormCtrl.addDestination()">Add</button>
-        </form>
+                <button type="submit" class="btn btn-primary btn-lg" ng-click="destFormCtrl.addDestination()">Add</button>
+            </form>
+        </div>
     </div>
 </div>

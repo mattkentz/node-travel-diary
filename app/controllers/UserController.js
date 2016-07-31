@@ -1,6 +1,7 @@
-'use strict'
-// Load the user model
+'use strict';
+var app = require('../../server');
 const User = require('../models/user');
+const jwt = require('jsonwebtoken');
 
 var UserController = {
     createUser: createUser,
@@ -34,9 +35,13 @@ function loginUser(req, res, next, passport) {
     if (!user) {
       return res.status(401).json({error: 'Auth Error!'});
     }
+
+    var token = jwt.sign(user, app.get('auth_secret'), {
+      expiresIn: 60 * 60 * 24 // expires in 24 hours
+    });
+
     res.status(200).json({
-      id: user._id,
-      email: user.local.email
+      token: token
     });
   })(req, res, next);
 };

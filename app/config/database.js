@@ -6,8 +6,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 module.exports = {
-  connect: connect
-}
+    connect: connect
+};
 
 // CONNECTION EVENTS
 mongoose.connection.on('connected', function() {
@@ -48,5 +48,5 @@ process.on('SIGTERM', function() {
 });
 
 function connect () {
-  mongoose.connect(dbURI);
+    mongoose.connect(dbURI);
 }

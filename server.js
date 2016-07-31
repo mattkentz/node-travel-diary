@@ -11,6 +11,9 @@ const database = require('./app/config/database');
 // configuration =================
 const port = process.env.PORT || 8080;
 
+// App must be exported before routes are required to avoid circular dependencies
+module.exports = app;
+
 database.connect(); // connect to Mongo database
 
 app.use(bodyParser.json()); // get all data/stuff of the body (POST) parameters - parse application/json
@@ -20,6 +23,7 @@ app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
+app.set('auth_secret', process.env.AUTH_SECRET || 'traveldiarysecret'); //Token secret for local authentication
 
 // Authentication using Passport
 require('./app/config/passport')(passport);
@@ -31,5 +35,3 @@ require('./app/routes/routes')(app, passport);
 // listen (start app with node server.js) ======================================
 app.listen(port);
 console.log(`App listening on port ${port}`);
-
-exports = module.exports = app;

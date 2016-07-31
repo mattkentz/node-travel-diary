@@ -26,7 +26,7 @@ require('./app/config/passport')(passport);
 app.use(passport.initialize());
 
 // Routes
-require('./app/routes')(app, passport);
+require('./app/routes/routes')(app, passport);
 
 // listen (start app with node server.js) ======================================
 app.listen(port);

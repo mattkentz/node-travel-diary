@@ -22,10 +22,16 @@
     <script src="node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
 
     <!-- APP -->
+    <!-- Destination Files -->
     <script src="modules/travel/destination-form.directive.js" type="text/javascript"></script>
     <script src="modules/travel/destination-list.directive.js" type="text/javascript"></script>
     <script src="modules/travel/destination-details.directive.js" type="text/javascript"></script>
-    <script src="modules/travel/travel-routes.module.js" type="text/javascript"></script>
+    <script src="modules/travel/travel-routes.config.js" type="text/javascript"></script>
+    <!-- User Files -->
+    <script src="modules/user/user-registration.directive.js" type="text/javascript"></script>
+    <script src="modules/user/user-routes.config.js" type="text/javascript"></script>
+    <script src="modules/user/user.module.js" type="text/javascript"></script>
+
     <script src="modules/travel/travel-diary.module.js" type="text/javascript"></script>
 
 </head>
@@ -38,7 +44,6 @@
                 <h1>Travel Diary</h1>
             </header>
         </a>
-
         <div ui-view></div>
 
     </div>

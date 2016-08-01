@@ -28,7 +28,12 @@ function UserRegistrationController ($state, UserRegistrationService) {
     function registerUser() {
         UserRegistrationService.registerUser(vm.user).then(
             function registerSuccess(resp) {
+                alert('Registration Successful');
                 $state.go('destinations');
+            },
+            function registerFailed(err) {
+                alert('Something went wrong!');
+                console.error(err);
             }
         );
     }

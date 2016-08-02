@@ -1,18 +1,18 @@
 'use strict';
 
-angular.module('travelDiary.destinationDetails', ['ngFileUpload']);
-angular.module('travelDiary.destinationDetails').directive('destinationDetails', DestinationDetails);
+angular.module('destination.destinationDetails', ['ngFileUpload']);
+angular.module('destination.destinationDetails').directive('destinationDetails', DestinationDetails);
 
 function DestinationDetails () {
   return {
-    templateUrl: 'modules/travel/destination-details.directive.html',
+    templateUrl: 'modules/destination/destination-details.directive.html',
     controller: 'DestinationDetailsController',
     controllerAs: 'destDetCtrl',
     bindToController: true
   }
 }
 
-angular.module('travelDiary.destinationDetails').controller('DestinationDetailsController', DestinationDetailsController);
+angular.module('destination.destinationDetails').controller('DestinationDetailsController', DestinationDetailsController);
 
 DestinationDetailsController.$inject = ['$scope','$stateParams','DestinationDetailsService'];
 
@@ -71,7 +71,7 @@ function DestinationDetailsController ($scope, $stateParams, DestinationDetailsS
   }
 }
 
-angular.module('travelDiary.destinationDetails').service('DestinationDetailsService', DestinationDetailsService);
+angular.module('destination.destinationDetails').service('DestinationDetailsService', DestinationDetailsService);
 
 DestinationDetailsService.$inject = ['$http', 'Upload'];
 

@@ -1,4 +1,4 @@
-angular.module('travelDiary.travelRoutes', ['ui.router']).config(routeConfiguration);
+angular.module('destination.routes', ['ui.router']).config(routeConfiguration);
 
 routeConfiguration.$inject = ['$stateProvider', '$urlRouterProvider'];
 
@@ -8,7 +8,7 @@ function routeConfiguration ($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('destinations', {
       url: "/destinations",
-      templateUrl: "modules/travel/destinations.html"
+      templateUrl: "modules/destination/destinations.html"
     })
     .state('destination-details', {
       url: "/destination-details/:id",

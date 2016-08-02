@@ -1,18 +1,18 @@
 'use strict';
 
-angular.module('travelDiary.destinationForm', []);
-angular.module('travelDiary.destinationForm').directive('destinationForm', DestinationForm);
+angular.module('destination.destinationForm', []);
+angular.module('destination.destinationForm').directive('destinationForm', DestinationForm);
 
 function DestinationForm () {
   return {
-    templateUrl: 'modules/travel/destination-form.directive.html',
+    templateUrl: 'modules/destination/destination-form.directive.html',
     controller: 'DestinationFormController',
     controllerAs: 'destFormCtrl',
     bindToController: true
   }
 }
 
-angular.module('travelDiary.destinationForm').controller('DestinationFormController', DestinationFormController);
+angular.module('destination.destinationForm').controller('DestinationFormController', DestinationFormController);
 
 DestinationFormController.$inject = ['DestinationFormService'];
 
@@ -39,7 +39,7 @@ function DestinationFormController (DestinationFormService) {
   };
 }
 
-angular.module('travelDiary.destinationForm').service('DestinationFormService', DestinationFormService);
+angular.module('destination.destinationForm').service('DestinationFormService', DestinationFormService);
 
 DestinationFormService.$inject = ['$http', '$rootScope'];
 

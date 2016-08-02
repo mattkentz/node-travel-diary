@@ -1,18 +1,18 @@
 'use strict';
 
-angular.module('travelDiary.destinationList', []);
-angular.module('travelDiary.destinationList').directive('destinationList', DestinationList);
+angular.module('destination.destinationList', []);
+angular.module('destination.destinationList').directive('destinationList', DestinationList);
 
 function DestinationList () {
   return {
-    templateUrl: 'modules/travel/destination-list.directive.html',
+    templateUrl: 'modules/destination/destination-list.directive.html',
     controller: 'DestinationListController',
     controllerAs: 'destListCtrl',
     bindToController: true
   }
 }
 
-angular.module('travelDiary.destinationList').controller('DestinationListController', DestinationListController);
+angular.module('destination.destinationList').controller('DestinationListController', DestinationListController);
 
 DestinationListController.$inject = ['$rootScope','DestinationListService'];
 
@@ -55,7 +55,7 @@ function DestinationListController ($rootScope, DestinationListService) {
   });
 }
 
-angular.module('travelDiary.destinationList').service('DestinationListService', DestinationListService);
+angular.module('destination.destinationList').service('DestinationListService', DestinationListService);
 
 DestinationListService.$inject = ['$http'];
 

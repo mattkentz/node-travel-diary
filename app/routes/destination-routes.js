@@ -27,7 +27,7 @@ if (!process.env.IGNORE_AUTH) {
             // verifies secret and checks exp
             jwt.verify(token, app.get('auth_secret'), function(err, decoded) {
                 if (err) {
-                    return res.json({ success: false, message: 'Failed to authenticate token.' });
+                    return res.status(401).json({ success: false, message: 'Failed to authenticate token.' });
                 } else {
                     // if everything is good, save to request for use in other routes
                     req.decoded = decoded;
@@ -37,7 +37,7 @@ if (!process.env.IGNORE_AUTH) {
 
         } else {
             // if there is no token return an error
-            return res.status(403).send({
+            return res.status(401).json({
                 success: false,
                 message: 'No token provided.'
             });

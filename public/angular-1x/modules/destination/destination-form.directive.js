@@ -29,13 +29,13 @@ function DestinationFormController (DestinationFormService) {
   }
 
   function addDestination() {
-    DestinationFormService.addDestination(vm.formData)
-    .success(function(data) {
+    DestinationFormService.addDestination(vm.formData).then(
+    function addDestinationSuccess(resp) {
         vm.formData = {}; // clear the form so our user is ready to enter another
-    })
-    .error(function(data) {
-        console.log('Error: ' + data);
-    });;
+    },
+    function addDestinationFailed(err) {
+        console.log('Error: ' + err);
+    });
   };
 }
 
@@ -50,11 +50,13 @@ function DestinationFormService ($http, $rootScope) {
   };
 
   function addDestination(destination) {
-    return $http.post('/api/destinations', destination)
-    .success(function(data) {
-        //TODO refactor using service 
-        $rootScope.$broadcast('destinations-updated', data);
-    });
+    return $http.post('/api/destinations', destination).then(
+        function addDestinationSuccess(resp) {
+          if (resp.status !== 401 && resp.data) {
+            $rootScope.$broadcast('destinations-updated', resp.data);
+          }
+        }
+    );
   }
 
   return DestinationFormService;

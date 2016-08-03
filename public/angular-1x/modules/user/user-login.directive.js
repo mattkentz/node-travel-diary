@@ -14,9 +14,9 @@ function UserLogin () {
 
 angular.module('user.login').controller('UserLoginController', UserLoginController);
 
-UserLoginController.$inject = ['UserLoginService'];
+UserLoginController.$inject = ['$window', 'UserLoginService'];
 
-function UserLoginController (UserLoginService) {
+function UserLoginController ($window, UserLoginService) {
     var vm = this;
     vm.user = {
         email: undefined,
@@ -29,11 +29,12 @@ function UserLoginController (UserLoginService) {
         UserLoginService.loginUser(vm.user).then(
             function registerSuccess(resp) {
                 alert('Login Successful');
-                console.log(resp)
+                $window.sessionStorage.token = resp.data.token;
             },
             function registerFailed(err) {
                 alert('Something went wrong!');
                 console.error(err);
+                delete $window.sessionStorage.token;
             }
         );
     }

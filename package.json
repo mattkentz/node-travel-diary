@@ -31,7 +31,11 @@
     "passport-local": "",
     "passport-twitter": "",
     "bcrypt": "^0.8.6",
-    "multiparty": "^4.1.2"
+    "multiparty": "^4.1.2",
+    "angular": "^1.5.5",
+    "angular-ui-router": "^0.3.0",
+    "ng-file-upload": "^12.0.4",
+    "bootstrap": "^3.3.6"
   },
   "engines": {
     "node": "5.11.0"

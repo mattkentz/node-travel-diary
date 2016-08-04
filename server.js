@@ -23,6 +23,7 @@ app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
+app.use('/libraries', express.static(__dirname + '/node_modules')); //Make node_modules available to the front end application
 app.set('auth_secret', process.env.AUTH_SECRET || 'traveldiarysecret'); //Token secret for local authentication
 
 // Authentication using Passport

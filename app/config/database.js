@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var gracefulShutdown;
 var dbURI = 'mongodb://127.0.0.1/node-todo';
 if (process.env.NODE_ENV === 'production') {
-    dbURI = process.env.MONGO_URI;
+    dbURI = process.env.MONGODB_URI;
 }
 
 module.exports = {

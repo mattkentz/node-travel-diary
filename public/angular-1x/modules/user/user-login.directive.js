@@ -14,9 +14,9 @@ function UserLogin () {
 
 angular.module('user.login').controller('UserLoginController', UserLoginController);
 
-UserLoginController.$inject = ['$window', 'UserLoginService'];
+UserLoginController.$inject = ['$scope', '$window', 'UserLoginService'];
 
-function UserLoginController ($window, UserLoginService) {
+function UserLoginController ($scope, $window, UserLoginService) {
     var vm = this;
     vm.user = {
         email: undefined,
@@ -24,6 +24,7 @@ function UserLoginController ($window, UserLoginService) {
     };
 
     vm.loginUser = loginUser;
+    vm.logout = logout;
 
     function loginUser() {
         UserLoginService.loginUser(vm.user).then(
@@ -38,6 +39,20 @@ function UserLoginController ($window, UserLoginService) {
             }
         );
     }
+
+    function logout() {
+        delete $window.sessionStorage.token;
+    }
+
+    $scope.$watch(function () {
+        return $window.sessionStorage.token
+    }, function (newVal, oldVal) {
+        if (newVal) {
+            vm.isLoggedIn = true;
+        } else {
+            vm.isLoggedIn = false;
+        }
+    });
 
 }
 

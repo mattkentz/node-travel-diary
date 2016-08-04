@@ -29,7 +29,7 @@ function getDestinationById(req, res) {
       if(destination.image && destination.image.data) {
           destination.image.data = destination.image.data.toString('base64');
       }
-      res.json(destination);
+      res.status(200).json(destination);
   });
 };
 

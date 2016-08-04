@@ -41,9 +41,10 @@ function DestinationListController ($rootScope, DestinationListService) {
 
   function deleteDestination(id) {
     DestinationListService.deleteDestination(id)
-      .success(function(data) {
-          vm.destinations = data;
-          console.log(data);
+      .success(function(resp) {
+          if (resp.status !== 401 && resp) {
+            vm.destinations = resp;
+          }
       })
       .error(function(data) {
           console.log('Error: ' + data);

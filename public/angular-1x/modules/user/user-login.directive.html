@@ -1,5 +1,5 @@
 <div id="user-login-form" class="">
-    <form>
+    <form ng-if="!userLoginCtrl.isLoggedIn">
         <span class="form-group">
             <input type="email" class="form-control" placeholder="Email" ng-model="userLoginCtrl.user.email">
         </span>
@@ -10,4 +10,5 @@
             <button type="submit" class="btn btn-default" ng-click="userLoginCtrl.loginUser()">Login</button>
         </span>
     </form>
+    <button class="btn btn-default" ng-if="userLoginCtrl.isLoggedIn" ng-click="userLoginCtrl.logout()">Logout</button>
 </div>

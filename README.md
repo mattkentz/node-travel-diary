@@ -8,6 +8,7 @@ REST API written in Node 5 and Express 4, using a MongoDB database and a client-
 - Google Oauth2 authentication using Passport
 - Image upload, storage and retrieval
 - Mongoose for handling MongoDB interactions
+- App deployment on Heroku
 
 # Scripts
 ## Deploy

@@ -14,9 +14,9 @@ function UserLogin () {
 
 angular.module('user.login').controller('UserLoginController', UserLoginController);
 
-UserLoginController.$inject = ['$scope', '$window', 'UserLoginService'];
+UserLoginController.$inject = ['$location', '$scope', '$window', 'UserLoginService'];
 
-function UserLoginController ($scope, $window, UserLoginService) {
+function UserLoginController ($location, $scope, $window, UserLoginService) {
     var vm = this;
     vm.user = {
         email: undefined,
@@ -26,9 +26,16 @@ function UserLoginController ($scope, $window, UserLoginService) {
     vm.loginUser = loginUser;
     vm.logout = logout;
 
+    if ($location.search().token) {
+        $window.sessionStorage.token = $location.search().token;
+        $location.url($location.path());
+    }
+
     function loginUser() {
         UserLoginService.loginUser(vm.user).then(
             function registerSuccess(resp) {
+                if (resp.status === 401)
+                    return;
                 alert('Login Successful');
                 $window.sessionStorage.token = resp.data.token;
             },

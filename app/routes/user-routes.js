@@ -13,6 +13,16 @@ module.exports = function (passport) {
         UserController.loginUser(req, res, next, passport);
     });
 
+    // POST - Login user with Google
+    router.get('/login/google', function (req, res, next) {
+        UserController.googleLogin(req, res, next, passport);
+    });
+
+    //GET - Callback from Google+ API
+    router.get('/login/google/callback/', function (req, res, next) {
+        UserController.googleCallback(req, res, next, passport);
+    });
+
     return router;
 
 };

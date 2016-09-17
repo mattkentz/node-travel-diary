@@ -9,6 +9,9 @@
         <span>
             <button type="submit" class="btn btn-default" ng-click="userLoginCtrl.loginUser()">Login</button>
         </span>
+        <span>
+            <a href="/api/users/login/google" class="btn btn-warning">Google</a>
+        </span>
     </form>
     <button class="btn btn-default" ng-if="userLoginCtrl.isLoggedIn" ng-click="userLoginCtrl.logout()">Logout</button>
 </div>

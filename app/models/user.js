@@ -5,8 +5,8 @@ const SALT_WORK_FACTOR = 10;
 
 var UserSchema = new Schema({
     local            : {
-        email        : { type: String, required: true, index: { unique: true } },
-        password     : { type: String, required: true }
+        email        : { type: String, unique: true, sparse: true },
+        password     : { type: String }
     },
     facebook         : {
         id           : String,

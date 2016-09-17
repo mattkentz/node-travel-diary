@@ -6,6 +6,11 @@ module.exports = function(app, passport) {
 
     const DestinationRouter = require('./destination-routes');
     const UserRouter = require('./user-routes')(passport);
+    const UserController = require('../controllers/UserController');
+
+    app.get('/api/users/login/google/callback/', function (req, res, next) {
+        UserController.googleCallback(req, res, next, passport);
+    });
 
     // Destination routes
     app.use('/api/destinations', DestinationRouter);

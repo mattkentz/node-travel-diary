@@ -1,7 +1,7 @@
 module.exports = function (passport) {
     const LocalStrategy = require('passport-local').Strategy;
+    const GoogleStrategy = require('passport-google-oauth20').Strategy;
     const User = require('../models/user');
-    const flash = require('connect-flash');
 
     // Sign Up
     passport.use('local-signup', new LocalStrategy({
@@ -41,7 +41,7 @@ module.exports = function (passport) {
             });
         }));
 
-    //Login
+    //Username and Password Login
     passport.use('local-login', new LocalStrategy({
             usernameField: 'email',
             passwordField: 'password'
@@ -61,6 +61,42 @@ module.exports = function (passport) {
                     })) {
                 }
             });
+        }
+    ));
+
+    passport.use(new GoogleStrategy({
+            clientID: '541494035924-fqvmd1f0355fk8t2qr60sl24jf28j3qs.apps.googleusercontent.com',
+            clientSecret: 'HQRI8i2HGvCGlCoiEltfVLey',
+            callbackURL: "http://localhost:8080/api/users/login/google/callback/"
+        },
+        function(accessToken, refreshToken, profile, done) {
+            process.nextTick(function () {
+                User.findOne({
+                    'google.id': profile.id
+                }, function(err, user) {
+                    if (err) {
+                        return done(err);
+                    }
+
+                    if (!user) {
+                        user = new User({
+                            google: {
+                                name: profile.displayName,
+                                email: profile.emails[0].value,
+                                username: profile.username,
+                                provider: 'google',
+                                id: profile.id
+                            }
+                        });
+                        user.save(function(err) {
+                            if (err) console.log(err);
+                            return done(err, user);
+                        });
+                    } else {
+                        return done(err, user);
+                    }
+                });
+            })
         }
     ));
 }

@@ -39,7 +39,7 @@
     "bootstrap": "^3.3.6"
   },
   "engines": {
-    "node": "5.11.0"
+    "node": "6.9.1"
   },
   "devDependencies": {
     "passport-google-oauth20": "^1.0.0"

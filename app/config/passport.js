@@ -67,7 +67,7 @@ module.exports = function (passport) {
     passport.use(new GoogleStrategy({
             clientID: '541494035924-fqvmd1f0355fk8t2qr60sl24jf28j3qs.apps.googleusercontent.com',
             clientSecret: 'HQRI8i2HGvCGlCoiEltfVLey',
-            callbackURL: "http://localhost:8080/api/users/login/google/callback/"
+            callbackURL: process.env.ROOT_URL + "/api/users/login/google/callback/"
         },
         function(accessToken, refreshToken, profile, done) {
             process.nextTick(function () {
